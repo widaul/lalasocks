@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog LalaSocks</title>
+
+  <!-- Font dan Icon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- CSS Katalog -->
+  <link rel="stylesheet" href="css/katalog.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar-container">
+    <nav class="nav-list">
+      <ul>
+        <li><a href="homepage.html">Beranda</a></li>
+        <li><a href="katalog.html">Katalog</a></li>
+        <li><a href="keranjang.html">Keranjang</a></li>
+        <li><a href="pesanan.html">Pesanan</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Katalog Produk -->
+    <div id="product-container" class="katalog-container">
+      <!-- Produk akan di-generate via JavaScript -->
+    </div>
+
+    <!-- Modal Produk -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="" class="modal-img" />
+        <h2 id="modalName"></h2>
+        <p id="modalDescription"></p>
+        <div class="price" id="modalPrice"></div>
+
+        <label for="quantity">Jumlah:</label>
+        <input type="number" id="quantity" min="1" value="1" />
+
+        <button id="addToCartButton" class="modal-btn">Tambahkan ke Keranjang</button>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <aside>
+      <div class="social-media">
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+          <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+          <li><a href="#"><i class="fab fa-shopee"></i></a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Script JS: Pop-up Produk -->
+  <script>
+    fetch('http://localhost:5000/allProduct')
+      .then(response => response.json())
+      .then(products => {
+        const container = document.getElementById('product-container');
+        products.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" />
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <div class="price">Rp${product.price}</div>
+          `;
+
+          card.addEventListener('click', () => {
+            openModal(product);
+          });
+
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error("Gagal mengambil data produk: ", err));
+
+    function openModal(product) {
+      document.getElementById('modalName').textContent = product.name;
+      document.getElementById('modalImage').src = product.image;
+      document.getElementById('modalDescription').textContent = product.description;
+      document.getElementById('modalPrice').textContent = `Rp${product.price}`;
+      document.getElementById('quantity').value = 1;
+
+      document.getElementById('addToCartButton').onclick = () => {
+        const quantity = parseInt(document.getElementById('quantity').value);
+        addToCart(product, quantity);
+        closeModal();
+      };
+
+      document.getElementById('productModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
+    function addToCart(product, quantity) {
+      console.log(`Menambahkan ke keranjang: ${product.name} x ${quantity}`);
+      alert(`${product.name} sebanyak ${quantity} berhasil ditambahkan ke keranjang!`);
+    }
+  </script>
+</body>
+
+</html>
