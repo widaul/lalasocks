@@ -2,187 +2,217 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
-    margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
 }
 
 /* NAVBAR */
 header.navbar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    z-index: 9999;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem 2rem;
-
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
-
-/* header.navbar-container .logo img {
-    width: 150px;
-} */
 
 header.navbar-container .nav-list ul {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
-header.navbar-container .nav-list a {
-    padding: 0.5rem 1.5rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: black;
-    transition: all 0.2s ease-in-out;
+header.navbar-container .nav-list ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-family: 'Quicksand', sans-serif;
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  transition: all 0.2s ease-in-out;
 }
 
-header.navbar-container .nav-list li:hover a {
-    background-color: #425c77;
-    color: white;
+header.navbar-container .nav-list ul li:hover a {
+  background-color: #425c77;
+  color: white;
 }
 
-/* WRAPPER UNTUK KONTEN DI BAWAH NAVBAR */
+/* SEARCH BOX */
+.search-box {
+  background-color: white;
+  border-radius: 999px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.search-box input[type="text"] {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  flex-grow: 1;
+  padding: 8px;
+}
+
+.search-box button {
+  background-color: #f82e9d;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* WRAPPER KONTEN UTAMA */
 main {
-    padding-top: 30px; /* supaya tidak tertimpa navbar */
-    max-width: 1200px;
-    margin: 0 auto;
+  padding-top: 100px; /* supaya tidak tertimpa navbar */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* KATALOG */
 .katalog-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 .card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(57, 57, 57, 0.1);
-    width: 250px;
-    padding: 15px;
-    text-align: center;
-    transition: all 0.2s ease-in;
-    backdrop-filter: blur(0px); /* default no blur */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(57, 57, 57, 0.1);
+  width: 250px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.2s ease-in;
+  backdrop-filter: blur(0px); /* default no blur */
 }
 
 .card:hover {
-    background: linear-gradient(135deg, rgba(231, 173, 182, 0.6), rgba(255, 255, 255, 0.6));
-    backdrop-filter: blur(10px);
-    transform: translateY(-8px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(231, 173, 182, 0.6), rgba(255, 255, 255, 0.6));
+  backdrop-filter: blur(10px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 6px;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .card h2 {
-    font-size: 18px;
-    margin: 10px 0 5px;
+  font-size: 18px;
+  margin: 10px 0 5px;
 }
 
 .card p {
-    font-size: 10px;
-    color: #555;
+  font-size: 10px;
+  color: #555;
 }
 
 .price {
-    color: #007bff;
-    font-weight: bold;
-    margin-top: 10px;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 /* SOSIAL MEDIA */
 main aside {
-    position: fixed;
-    inset-block: 0;
-    inset-inline-end: 0;
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
 }
 
 main aside .social-media {
-    height: 100%;
-    display: flex;
+  height: 100%;
+  display: flex;
 }
 
 main aside .social-media ul {
-    padding: 1.5rem 1rem;
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-    margin: auto;
-    background-color: #2d3e50;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
+  padding: 1.5rem 1rem;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  margin: auto;
+  background-color: #2d3e50;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 main aside .social-media li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 main aside .social-media li a {
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: white;
-    transition: all 0.1s ease-in-out;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: white;
+  transition: all 0.1s ease-in-out;
 }
 
 main aside .social-media li a:hover {
-    color: #89b0d9;
+  color: #89b0d9;
 }
 
-/* --- MODAL BACKGROUND --- */
+/* MODAL */
 .modal {
-  display: none; /* disembunyikan secara default */
+  display: none;
   position: fixed;
   z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* scroll jika konten panjang */
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparan background */
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* --- MODAL CONTENT --- */
 .modal-content {
   background-color: #fff;
-  margin: 10% auto; /* posisi tengah vertikal */
+  margin: 10% auto;
   padding: 20px;
   border-radius: 8px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* --- ANIMASI MASUK --- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* --- TOMBOL CLOSE (X) --- */
 .close {
   color: #aaa;
   float: right;
@@ -194,7 +224,6 @@ main aside .social-media li a:hover {
   color: #000;
 }
 
-/* --- GAMBAR DI MODAL --- */
 .modal-img {
   width: 100%;
   max-height: 200px;
@@ -202,7 +231,6 @@ main aside .social-media li a:hover {
   margin-bottom: 10px;
 }
 
-/* --- TOMBOL MODAL --- */
 .modal-btn {
   display: inline-block;
   background-color: #e91e63;
@@ -218,20 +246,19 @@ main aside .social-media li a:hover {
   background-color: #c2185b;
 }
 
-
 /* RESPONSIF */
 @media screen and (max-width: 768px) {
-    header.navbar-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
+  header.navbar-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    header.navbar-container .nav-list ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  header.navbar-container .nav-list ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .katalog-container {
-        padding: 0 1rem;
-    }
+  .katalog-container {
+    padding: 0 1rem;
+  }
 }
