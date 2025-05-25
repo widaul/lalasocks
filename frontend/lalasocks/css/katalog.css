@@ -16,7 +16,7 @@ header.navbar-container {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(230, 145, 145);
+    background-color: rgb(255, 255, 255);
     z-index: 9999;
 
     display: flex;

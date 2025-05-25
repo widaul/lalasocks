@@ -11,6 +11,77 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Container utama */
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px;
+    gap: 40px;
+}
+
+/* Deskripsi teks */
+.content-description {
+    flex: 1;
+}
+
+.tittle {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.content-description p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.content-description button {
+    background-color: #f85a8f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.content-description button a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Gambar kaos kaki */
+.content-image {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.content-image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background-color: #ffd9e2;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.content-image img {
+    max-width: 100%;
+    height: auto;
+    z-index: 1;
+    position: relative;
 }
 
 /* NAVBAR */
@@ -19,7 +90,7 @@ header.navbar-container {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgb(209, 77, 114);
+  background-color: rgb(255, 255, 255);
   z-index: 9999;
 
   display: flex;
@@ -169,6 +240,43 @@ main aside .social-media li a {
 main aside .social-media li a:hover {
   color: #89b0d9;
 }
+
+/* searching */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 50px;
+  padding: 5px 10px;
+  width: 300px;
+  max-width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 50px;
+}
+
+.search-btn {
+  background-color: #ff2d83;
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #e0246c;
+}
+
 
 /* RESPONSIF */
 @media screen and (max-width: 768px) {
