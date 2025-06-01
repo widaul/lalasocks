@@ -1,7 +1,8 @@
 const { options } = require('joi');
 const {
     register,
-    login,
+    loginUser,
+    loginAdmin,
     getProduct,
     addKeranjang,
     nampilinKeranjang,
@@ -24,8 +25,13 @@ const routes = [
     },
     {
         method: 'POST',
-        path: '/login',
-        handler: login,
+        path: '/user/login',
+        handler: loginUser,
+    },
+    {
+        method: 'POST',
+        path: '/admin/login',
+        handler: loginAdmin,
     },
     {
         method: 'GET',

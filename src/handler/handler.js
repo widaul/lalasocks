@@ -63,13 +63,13 @@ const register = async (req, h) => {
 
 
 //login
-const login = async (req, h) => {
+const loginUser = async (req, h) => {
   const { email, password } = req.payload;
 
   try {
     const user = await User.findUserByEmail(email);
 
-    if (!user) {
+    if (!user || user.role !== 'user') {
       return h.response({
         status: 'fail',
         message: 'Email atau password salah',
@@ -84,10 +84,9 @@ const login = async (req, h) => {
       }).code(400);
     }
 
-    // Buat JWT token
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      'your-secret-key', // simpan di .env yaa
+      process.env.JWT_SECRET || 'your-secret-key',
       { expiresIn: '1h' }
     );
 
@@ -97,7 +96,6 @@ const login = async (req, h) => {
       token,
       role: user.role
     }).code(200);
-
   } catch (err) {
     console.error('Login error:', err.message);
     return h.response({
@@ -106,6 +104,49 @@ const login = async (req, h) => {
     }).code(500);
   }
 };
+
+const loginAdmin = async (req, h) => {
+  const { email, password } = req.payload;
+
+  try {
+    const user = await User.findUserByEmail(email);
+
+    if (!user || user.role !== 'admin') {
+      return h.response({
+        status: 'fail',
+        message: 'Email atau password salah atau bukan admin',
+      }).code(400);
+    }
+
+    const isMatch = await comparePassword(password, user.password);
+    if (!isMatch) {
+      return h.response({
+        status: 'fail',
+        message: 'Email atau password salah',
+      }).code(400);
+    }
+
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET || 'your-secret-key',
+      { expiresIn: '1h' }
+    );
+
+    return h.response({
+      status: 'success',
+      message: 'Login admin berhasil',
+      token,
+      role: user.role
+    }).code(200);
+  } catch (err) {
+    console.error('Login admin error:', err.message);
+    return h.response({
+      status: 'error',
+      message: 'Terjadi kesalahan pada server.',
+    }).code(500);
+  }
+};
+
 
 const getProfile = async (request, h) => {
   try {
@@ -572,7 +613,8 @@ const ubahStatusPesanan = async (request, h) => {
 
 module.exports = {
   register,
-  login,
+  loginUser,
+  loginAdmin,
   getProfile,
   getProduct,
   addKeranjang,
