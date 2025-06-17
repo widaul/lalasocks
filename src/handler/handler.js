@@ -7,7 +7,6 @@ const verifyToken = require('../middlewares/verifyToken');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const { nanoid } = require('nanoid');
-const { addUser, findUserByEmail } = require('../data/user');
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -300,7 +299,7 @@ const updateKeranjang = async (request, h) => {
   }
 };
 
-/* Checkout keranjang (Midtrans)
+//Checkout keranjang (Midtrans)
 const checkoutCart = async (request, h) => {
   const { id_keranjang } = request.payload;
 
@@ -323,7 +322,7 @@ const checkoutCart = async (request, h) => {
 
     const userId = cartRows[0].id;
     const [userRows] = await connection.execute(
-      `SELECT id, name, email, telephone FROM user WHERE id = ?`,
+      `SELECT id, username, email, telephone FROM user WHERE id = ?`,
       [userId]
     );
 
@@ -372,6 +371,9 @@ const checkoutCart = async (request, h) => {
         phone: user.telephone,
       },
       item_details: productsInCart,
+      callbacks: {
+        finish: "http://localhost/pesanan.html"
+      }
     });
 
     await connection.beginTransaction();
@@ -451,8 +453,8 @@ const paymentCallback = async (request, h) => {
     return h.response({ message: 'Gagal memproses callback' }).code(500);
   }
 };
-*/
 
+/*
 const checkoutManual = async (request, h) => {
   const user_id = request.auth.credentials.id;
   const { nama, alamat, total, items } = request.payload;
@@ -520,6 +522,7 @@ const checkoutManual = async (request, h) => {
     connection.release();
   }
 };
+*/
 
 
 const getUserOrders = async (request, h) => {
@@ -620,9 +623,9 @@ module.exports = {
   addKeranjang,
   nampilinKeranjang,
   updateKeranjang,
-  //checkoutCart,
-  //paymentCallback,
-  checkoutManual,
+  checkoutCart,
+  paymentCallback,
+  //checkoutManual,
   getUserOrders,
   getPesananAdmin,
   ubahStatusPesanan

@@ -70,10 +70,13 @@ const routes = [
         },
         handler: updateKeranjang,
     },
-    /*
+    
     {
         method: 'POST',
-        path: '/payments',
+        path: '/pesanan/manual',
+        options: {
+            pre: [{ method: verifyToken }],
+        },
         handler: checkoutCart,
     },
     {
@@ -81,7 +84,7 @@ const routes = [
         path: '/payments/payment-callback',
         handler: paymentCallback,
     },
-    */
+    /*
     {
         method: 'POST',
         path: '/pesanan/manual',
@@ -90,6 +93,7 @@ const routes = [
         },
         handler: checkoutManual,
     },
+    */
     {
         method: 'GET',
         path: '/pesanan',
